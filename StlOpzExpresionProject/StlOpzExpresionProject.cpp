@@ -1,55 +1,24 @@
 ﻿#include <iostream>
-#include <string>
-#include <stack>
+#include "MathExpression.h"
 
 using namespace std;
 
-int BracketsCheck(string expresion)
-{
-    int position{};
-    const string brackets = "()[]{}";
-    const string bracketsOpen = "([{";
-    const string bracketsClose = ")]}";
-    stack<char> bracketsStack;
-
-    while (position < expresion.length())
-    {
-        // strchr(brackets.c_str(), expresion[position]);
-
-        if (brackets.find(expresion[position]) == string::npos)
-        {
-            position++;
-            continue;
-        }
-
-        if (bracketsOpen.find(expresion[position]) != string::npos)
-        {
-            bracketsStack.push(expresion[position]);
-            position++;
-            continue;
-        }
-
-        if (bracketsStack.empty())
-            return position;
-
-        int typeClose = bracketsClose.find(expresion[position]);
-        int typeOpen = bracketsOpen.find(bracketsStack.top());
-        
-        if (typeClose != typeOpen)
-            return position;
-
-        bracketsStack.pop();
-
-        position++;
-    }
-
-    return ((bracketsStack.empty()) ? -1 : position);
-}
-
 int main()
 {
-    string expresionMath = "())";
+    // (1 / (2 - 3) + (4 + 5) * 6) / 7
+    MathExpression expr("sin(5) + 6");
 
-    cout << expresionMath << "\n";
-    cout << BracketsCheck(expresionMath) << "\n";
+    expr["a"] = 10;
+    expr["b"] = 20;
+    expr["a"] = 5;
+
+    cout << expr["a"] << " " << expr["b"] << "\n";
+
+    cout << expr.Expression() << "\n";
+    cout << expr.BracketsCheck() << "\n";
+
+    expr.OpzCreate();
+    cout << expr.ExpressionOpz() << "\n";
+    cout << expr.OpzCalculate() << "\n";
+
 }

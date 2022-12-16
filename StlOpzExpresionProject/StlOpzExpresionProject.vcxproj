@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MathExpression.cpp" />
     <ClCompile Include="StlOpzExpresionProject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MathExpression.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
